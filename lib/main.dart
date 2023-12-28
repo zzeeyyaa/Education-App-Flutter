@@ -1,3 +1,4 @@
+import 'package:education_app/core/services/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,12 +10,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      title: 'Education App - Zia',
+      theme: ThemeData(
+        useMaterial3: true,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        appBarTheme: const AppBarTheme(color: Colors.transparent),
       ),
+      onGenerateRoute: generateRoute,
     );
   }
 }
