@@ -1,3 +1,5 @@
+import 'package:education_app/core/res/fonts.dart';
+import 'package:education_app/core/res/my_colors.dart';
 import 'package:education_app/core/services/router.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,10 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         appBarTheme: const AppBarTheme(color: Colors.transparent),
+        fontFamily: Fonts.poppins,
+        colorScheme: ColorScheme.fromSwatch(
+          accentColor: MyColors.primaryColour,
+        ),
       ),
       onGenerateRoute: generateRoute,
     );

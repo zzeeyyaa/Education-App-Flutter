@@ -1,3 +1,4 @@
+import 'package:education_app/core/common/views/page_under_construction.dart';
 import 'package:education_app/scr/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     default:
       return _pageBuilder(
-        (_) => null,
+        (_) => const PageUnderConstruction(),
         settings: settings,
       );
   }

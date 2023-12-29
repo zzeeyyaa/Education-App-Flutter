@@ -1,3 +1,4 @@
+import 'package:education_app/core/res/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -7,6 +8,8 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      color: MyColors.chatFieldColour,
+    );
   }
 }
