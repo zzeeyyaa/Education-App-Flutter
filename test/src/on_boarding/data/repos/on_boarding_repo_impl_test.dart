@@ -77,11 +77,4 @@ void main() {
       verifyNoMoreInteractions(localDataSource);
     });
   });
-
-  group('checkIfUserIsFirstTime', () {
-    test('should return [Right] successfully when call local source is successful', () async {
-      when(() => localDataSource.checkIfUserIsFirstTimer(),).thenAnswer((_) =>  );
-    });
-    test('description', () => null);
-  });
 }
