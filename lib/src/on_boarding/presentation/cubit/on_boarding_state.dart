@@ -7,10 +7,12 @@ abstract class OnBoardingState extends Equatable {
   List<Object> get props => [];
 }
 
+//initial
 final class OnBoardingInitial extends OnBoardingState {
   const OnBoardingInitial();
 }
 
+//pas lagi dilakuin
 class CachingFirstTimer extends OnBoardingState {
   const CachingFirstTimer();
 }
@@ -19,6 +21,7 @@ class CheckingIfUserIsFirstTimer extends OnBoardingState {
   const CheckingIfUserIsFirstTimer();
 }
 
+//pas udh dilakuin
 class UserCached extends OnBoardingState {
   const UserCached();
 }
@@ -32,6 +35,7 @@ class OnBoardingStatus extends OnBoardingState {
   List<bool> get props => [isFirstTimer];
 }
 
+//pas error
 class OnBoardingError extends OnBoardingState {
   const OnBoardingError(this.message);
   final String message;
