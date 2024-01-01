@@ -77,68 +77,69 @@ void main() {
       verifyNoMoreInteractions(localDataSource);
     });
   });
+
   group('checkIfUserIsFirstTimer', () {
-    test(
-      'should return true when user is first timer',
+    test('emit return true when user is first timer', () async {
+      when(
+        () => localDataSource.checkIfUserIsFirstTimer(),
+      ).thenAnswer((invocation) async => Future.value(true));
+
+      final result = await repoImpl.checkIfUserIsFirstTimer();
+
+      expect(result, equals(const Right<dynamic, bool>(true)));
+
+      verify(
+        () => localDataSource.checkIfUserIsFirstTimer(),
+      ).called(1);
+      verifyNoMoreInteractions(localDataSource);
+    });
+  });
+
+  test('should return false when user is not first timer', () async {
+    when(
+      () => localDataSource.checkIfUserIsFirstTimer(),
+    ).thenAnswer((invocation) async => Future.value(false));
+
+    final result = await repoImpl.checkIfUserIsFirstTimer();
+
+    expect(result, equals(const Right<dynamic, bool>(false)));
+
+    verify(
+      () => localDataSource.checkIfUserIsFirstTimer(),
+    ).called(1);
+
+    verifyNoMoreInteractions(localDataSource);
+  });
+
+  test('return CacheFailure when call localDataSource is unsuccessfull',
       () async {
-        when(() => localDataSource.checkIfUserIsFirstTimer())
-            .thenAnswer((_) async => Future.value(true));
-
-        final result = await repoImpl.checkIfUserIsFirstTimer();
-
-        expect(result, equals(const Right<dynamic, bool>(true)));
-
-        verify(() => localDataSource.checkIfUserIsFirstTimer()).called(1);
-
-        verifyNoMoreInteractions(localDataSource);
-      },
+    when(
+      () => localDataSource.checkIfUserIsFirstTimer(),
+    ).thenThrow(
+      const CacheException(
+        message: 'Insufficient permission',
+        statusCode: 403,
+      ),
     );
 
-    test(
-      'should return false when user is not first timer',
-      () async {
-        when(() => localDataSource.checkIfUserIsFirstTimer())
-            .thenAnswer((_) async => Future.value(false));
+    final result = await repoImpl.checkIfUserIsFirstTimer();
 
-        final result = await repoImpl.checkIfUserIsFirstTimer();
-
-        expect(result, equals(const Right<dynamic, bool>(false)));
-
-        verify(() => localDataSource.checkIfUserIsFirstTimer()).called(1);
-
-        verifyNoMoreInteractions(localDataSource);
-      },
-    );
-
-    test(
-      'should return a CacheFailure when call to local data source '
-      'is unsuccessful',
-      () async {
-        when(() => localDataSource.checkIfUserIsFirstTimer()).thenThrow(
-          const CacheException(
-            message: 'Insufficient permissions',
+    expect(
+      result,
+      equals(
+        Left<CacheFailure, bool>(
+          CacheFailure(
+            message: 'Insufficient permission',
             statusCode: 403,
           ),
-        );
-
-        final result = await repoImpl.checkIfUserIsFirstTimer();
-
-        expect(
-          result,
-          equals(
-            Left<CacheFailure, bool>(
-              CacheFailure(
-                message: 'Insufficient permissions',
-                statusCode: 403,
-              ),
-            ),
-          ),
-        );
-
-        verify(() => localDataSource.checkIfUserIsFirstTimer()).called(1);
-
-        verifyNoMoreInteractions(localDataSource);
-      },
+        ),
+      ),
     );
+
+    verify(
+      () => localDataSource.checkIfUserIsFirstTimer(),
+    ).called(1);
+
+    verifyNoMoreInteractions(localDataSource);
   });
 }

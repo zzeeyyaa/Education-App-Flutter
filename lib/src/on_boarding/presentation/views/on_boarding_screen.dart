@@ -45,41 +45,38 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 state is CachingFirstTimer) {
               return const LoadingView();
             }
-            return GradientBackground(
-              image: MediaRes.onBoardingBackground,
-              child: Stack(
-                children: [
-                  PageView(
+            return Stack(
+              children: [
+                PageView(
+                  controller: pageController,
+                  children: const [
+                    OnBoardingBody(pageContent: PageContent.first()),
+                    OnBoardingBody(pageContent: PageContent.second()),
+                    OnBoardingBody(pageContent: PageContent.third()),
+                  ],
+                ),
+                Align(
+                  alignment: const Alignment(0, .04),
+                  child: SmoothPageIndicator(
                     controller: pageController,
-                    children: const [
-                      OnBoardingBody(pageContent: PageContent.first()),
-                      OnBoardingBody(pageContent: PageContent.second()),
-                      OnBoardingBody(pageContent: PageContent.third()),
-                    ],
-                  ),
-                  Align(
-                    alignment: const Alignment(0, .04),
-                    child: SmoothPageIndicator(
-                      controller: pageController,
-                      count: 3,
-                      onDotClicked: (index) {
-                        pageController.animateToPage(
-                          index,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                        );
-                      },
-                      effect: const WormEffect(
-                        dotHeight: 10,
-                        dotWidth: 10,
-                        spacing: 40,
-                        activeDotColor: MyColors.primaryColour,
-                        dotColor: Colors.white,
-                      ),
+                    count: 3,
+                    onDotClicked: (index) {
+                      pageController.animateToPage(
+                        index,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                    effect: const WormEffect(
+                      dotHeight: 10,
+                      dotWidth: 10,
+                      spacing: 40,
+                      activeDotColor: MyColors.primaryColour,
+                      dotColor: Colors.white,
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             );
           },
         ),
