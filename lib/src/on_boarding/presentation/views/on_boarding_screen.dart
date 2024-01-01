@@ -20,6 +20,7 @@ class OnBoardingScreen extends StatefulWidget {
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final pageController = PageController();
+
   @override
   void initState() {
     super.initState();
@@ -75,7 +76,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       dotColor: Colors.white,
                     ),
                   ),
-                )
+                ),
               ],
             );
           },
