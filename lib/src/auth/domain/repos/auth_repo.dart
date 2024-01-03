@@ -21,6 +21,6 @@ abstract class AuthRepo {
   ResultVoid updateUser({
     //what action user trying to be updated
     required UpdateUserAction action,
-    dynamic userData,
+    required dynamic userData,
   });
 }
