@@ -1,3 +1,3 @@
-# education_app
+# education app - Flutter
 
-A new Flutter project.
+Thanks to : dbestech
