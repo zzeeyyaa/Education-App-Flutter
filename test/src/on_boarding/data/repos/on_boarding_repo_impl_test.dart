@@ -28,8 +28,8 @@ void main() {
 
   group('cacheFirstTimer', () {
     test(
-        'should return [Right] successfully when call local source is successful',
-        () async {
+        'should return [Right] successfully when call local '
+        'source is successful', () async {
       //arrange
       when(() => localDataSource.cacheFirstTimer()).thenAnswer(
         (_) async => Future.value(),
@@ -48,8 +48,8 @@ void main() {
     });
 
     test(
-        'should return [CacheFailure] when call to local source is unsuccessfull',
-        () async {
+        'should return [CacheFailure] when call to local source '
+        'is unsuccessfull', () async {
       //arrage
       when(
         () => localDataSource.cacheFirstTimer(),

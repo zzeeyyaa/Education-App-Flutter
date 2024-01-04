@@ -60,7 +60,9 @@ class AuthRepoImpl implements AuthRepo {
   }) async {
     try {
       await _authRemoteDataSource.updateUser(
-          action: action, userData: userData);
+        action: action,
+        userData: userData,
+      );
       return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message, statusCode: e.statusCode));

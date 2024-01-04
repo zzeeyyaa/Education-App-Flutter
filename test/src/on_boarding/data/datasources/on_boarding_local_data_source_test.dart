@@ -34,7 +34,8 @@ void main() {
         () => prefs.setBool(any(), any()),
       ).thenThrow(Exception());
 
-//remember when testing for errors in datasource, donot save result but call methode
+//remember when testing for errors in datasource, donot save result
+// but call methode
       final methodCall = localDataSource.cacheFirstTimer;
 
       expect(
@@ -83,8 +84,8 @@ void main() {
       verifyNoMoreInteractions(prefs);
     });
     test(
-        'should throw [CacheException] when there is an error retreiving the data',
-        () async {
+        'should throw [CacheException] when there is an error '
+        'retreiving the data', () async {
       when(
         () => prefs.getBool(any()),
       ).thenThrow(Exception());

@@ -51,8 +51,8 @@ void main() {
       verifyNoMoreInteractions(remoteDataSource);
     });
     test(
-        'should call [ServerFailure] when call [RemoteDataSource.forgorPassword] unsuccess',
-        () async {
+        'should call [ServerFailure] when call '
+        '[RemoteDataSource.forgorPassword] unsuccess', () async {
       when(
         () => remoteDataSource.forgotPassword(''),
       ).thenThrow(tException);
@@ -81,8 +81,8 @@ void main() {
 
   group('signIn', () {
     test(
-        'should call [RemoteDataSource.signIn], when success return [LocalUser]',
-        () async {
+        'should call [RemoteDataSource.signIn], when '
+        'success return [LocalUser]', () async {
       when(
         () => remoteDataSource.signIn(
           email: any(named: 'email'),
@@ -108,7 +108,9 @@ void main() {
         ' is unsuccessfull', () async {
       when(
         () => remoteDataSource.signIn(
-            email: any(named: 'email'), password: any(named: 'password')),
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
       ).thenThrow(tException);
 
       final result = await repoImpl.signIn(

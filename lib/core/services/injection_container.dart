@@ -22,7 +22,8 @@ Future<void> init() async {
     )
     ..registerLazySingleton(() => CacheFirstTimer(sl()))
     ..registerLazySingleton(() => CheckIfUserIsFirstTimer(sl()))
-    //go to their dependency, but not interface, so have to pass to implementation
+    //go to their dependency, but not interface, so have to pass to
+    //implementation
     ..registerLazySingleton<OnBooardingRepo>(() => OnBoardingRepoImpl(sl()))
     ..registerLazySingleton<OnBoardingLocalDataSource>(
       () => OnBoardingLocalDataSrcImpl(sl()),
