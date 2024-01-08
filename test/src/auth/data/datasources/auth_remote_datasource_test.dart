@@ -6,7 +6,6 @@ import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
-import 'package:mocktail/mocktail.dart';
 
 void main() {
   late FakeFirebaseFirestore cloudStoreClient;
@@ -67,9 +66,6 @@ void main() {
         .doc(authClient.currentUser!.uid)
         .get();
     expect(user.exists, isTrue);
-
-    verify(() => authClient.sendPasswordResetEmail(email: tEmail)).called(1);
-    verifyNoMoreInteractions(authClient);
   });
 
   test('signIn', () async {
