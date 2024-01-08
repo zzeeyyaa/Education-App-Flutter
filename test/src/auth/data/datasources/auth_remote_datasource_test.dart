@@ -1,116 +1,249 @@
-import 'package:education_app/core/enums/update_user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_app/core/errors/exceptions.dart';
+import 'package:education_app/core/utils/constants.dart';
+import 'package:education_app/core/utils/typedefs.dart';
 import 'package:education_app/src/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:education_app/src/auth/data/models/user_model.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockFirebaseAuth extends Mock implements FirebaseAuth {}
+
+class MockUser extends Mock implements User {
+  String _uid = 'Test uid';
+
+  @override
+  String get uid => _uid;
+
+  set uid(String value) {
+    if (_uid != value) _uid = value;
+  }
+}
+
+class MockUserCredential extends Mock implements UserCredential {
+  MockUserCredential([User? user]) : _user = user;
+  User? _user;
+
+  @override
+  User? get user => _user;
+
+  set user(User? value) {
+    if (_user != value) {
+      _user = user;
+    }
+  }
+}
+
+class MockAuthCredential extends Mock implements AuthCredential {}
 
 void main() {
-  late FakeFirebaseFirestore cloudStoreClient;
-  late MockFirebaseAuth authClient;
+  late FirebaseAuth authClient;
+  late FirebaseFirestore cloudStoreClient;
   late MockFirebaseStorage dbClient;
   late AuthRemoteDataSource dataSource;
+  late UserCredential userCredential;
+  late DocumentReference<DataMap> documentReference;
+  late MockUser mockUser;
 
-  setUp(() async {
+  const tUser = LocalUserModel.empty();
+
+  setUpAll(() async {
+    authClient = MockFirebaseAuth();
     cloudStoreClient = FakeFirebaseFirestore();
-
-    // Mock sign in with Google.
-    final googleSignIn = MockGoogleSignIn();
-    final signInAccount = await googleSignIn.signIn();
-    final googleAuth = await signInAccount!.authentication;
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
+    documentReference = cloudStoreClient.collection('users').doc();
+    await documentReference.set(
+      tUser.copyWith(uid: documentReference.id).toMap(),
     );
-    // Sign in.
-    final mockUser = MockUser(
-      // isAnonymous: false,
-      uid: 'someuid',
-      email: 'bob@somedomain.com',
-      displayName: 'Bob',
-    );
-    // final auth = MockFirebaseAuth(mockUser: user);
-    authClient = MockFirebaseAuth(mockUser: mockUser);
-    final result = await authClient.signInWithCredential(credential);
-    final user = result.user;
     dbClient = MockFirebaseStorage();
+    mockUser = MockUser()..uid = documentReference.id;
+    userCredential = MockUserCredential(mockUser);
     dataSource = AuthRemoteDataSourceImpl(
       authClient: authClient,
       cloudStoreClient: cloudStoreClient,
       dbClient: dbClient,
     );
-    print(mockUser.displayName);
+
+    when(
+      () => authClient.currentUser,
+    ).thenReturn(mockUser);
   });
 
   const tPassword = 'Test password';
   const tFullName = 'Test fullName';
-  const tEmail = 'testemail@mial.com';
+  const tEmail = 'Test email';
 
-  test('signUp', () async {
-    //act
-    await dataSource.signUp(
-      email: tEmail,
-      fullName: tFullName,
-      password: tPassword,
-    );
-    //asserting
-    //expect user was created in firestore and authclient
-    //also has this user
-    expect(authClient.currentUser, isNotNull);
-    expect(authClient.currentUser!.displayName, tFullName);
+  final tFirebaseAtuhException = FirebaseAuthException(
+    code: 'user-not-found',
+    message: 'There is no user record corresponding to this identifier',
+  );
 
-    final user = await cloudStoreClient
-        .collection('users')
-        .doc(authClient.currentUser!.uid)
-        .get();
-    expect(user.exists, isTrue);
+  group('forgotPassword', () {
+    test('Should be successfully when no [Exception] is thrown', () async {
+      when(
+        () => authClient.sendPasswordResetEmail(email: any(named: 'email')),
+      ).thenAnswer((invocation) async => Future.value());
+
+      final call = dataSource.forgotPassword(tEmail);
+
+      expect(call, completes);
+
+      verify(
+        () => authClient.sendPasswordResetEmail(email: tEmail),
+      ).called(1);
+      verifyNoMoreInteractions(authClient);
+    });
+    test(
+        'should throw [ServerException] when [FirebaseAuthException] is thrown',
+        () async {
+      when(
+        () => authClient.sendPasswordResetEmail(email: any(named: 'email')),
+      ).thenThrow(tFirebaseAtuhException);
+      final call = dataSource.forgotPassword;
+      expect(() => call(tEmail), throwsA(isA<ServerException>()));
+      verify(
+        () => authClient.sendPasswordResetEmail(email: tEmail),
+      ).called(1);
+      verifyNoMoreInteractions(authClient);
+    });
   });
 
-  test('signIn', () async {
-    await dataSource.signUp(
-      email: 'newEmail@mail.com',
-      fullName: tFullName,
-      password: tPassword,
-    );
-    await authClient.signOut();
-    await dataSource.signIn(
-      email: 'newEmail@mail.com',
-      password: tPassword,
-    );
+  group('signIn', () {
+    test('should return [LocalUserModel] when no Exception is thrown',
+        () async {
+      when(
+        () => authClient.signInWithEmailAndPassword(
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenAnswer((_) async => userCredential);
 
-    expect(authClient.currentUser, isNotNull);
-    expect(authClient.currentUser!.email, equals('newEmail#mail.com'));
+      final result = await dataSource.signIn(
+        email: tEmail,
+        password: tPassword,
+      );
+      expect(result.uid, userCredential.user!.uid);
+      expect(result.points, 0);
+      verify(
+        () => authClient.signInWithEmailAndPassword(
+          email: tEmail,
+          password: tPassword,
+        ),
+      ).called(1);
+      verifyNoMoreInteractions(authClient);
+    });
+    test('should throw [ServerException] when user is null after signin',
+        () async {
+      final emptyUserCredential = MockUserCredential();
+      when(
+        () => authClient.signInWithEmailAndPassword(
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenAnswer((_) async => emptyUserCredential);
+
+      final result = dataSource.signIn;
+      expect(
+        () => result(email: tEmail, password: tPassword),
+        throwsA(isA<ServerException>()),
+      );
+      verify(
+        () => authClient.signInWithEmailAndPassword(
+          email: tEmail,
+          password: tPassword,
+        ),
+      ).called(1);
+      verifyNoMoreInteractions(authClient);
+    });
   });
+  group('signUp', () {
+    test('should return complete successfully when no []Exception] is thrown',
+        () async {
+      when(
+        () => authClient.createUserWithEmailAndPassword(
+            email: any(named: 'email'), password: any(named: 'password')),
+      ).thenAnswer((_) async => userCredential);
 
+      when(
+        () => userCredential.user?.updateDisplayName(any()),
+      ).thenAnswer((_) async => Future.value());
+
+      when(
+        () => userCredential.user?.updatePhotoURL(any()),
+      ).thenAnswer((_) async => Future.value());
+
+      final call = dataSource.signUp(
+        email: tEmail,
+        fullName: tFullName,
+        password: tPassword,
+      );
+      expect(call, completes);
+      verify(
+        () => authClient.createUserWithEmailAndPassword(
+          email: tEmail,
+          password: tPassword,
+        ),
+      ).called(1);
+
+      await untilCalled(
+        () => userCredential.user?.updateDisplayName(any()),
+      );
+      await untilCalled(
+        () => userCredential.user?.updatePhotoURL(any()),
+      );
+
+      verify(
+        () => userCredential.user?.updateDisplayName(tFullName),
+      ).called(1);
+      verify(
+        () => userCredential.user?.updatePhotoURL(kDefaultAvatar),
+      ).called(1);
+
+      verifyNoMoreInteractions(authClient);
+    });
+    test('should throw [ServerException] when [FirebaseException] is thrown',
+        () async {
+      when(
+        () => authClient.createUserWithEmailAndPassword(
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenThrow(tFirebaseAtuhException);
+
+      final call = dataSource.signUp;
+
+      expect(
+        () => call(
+          email: tEmail,
+          fullName: tFullName,
+          password: tPassword,
+        ),
+        throwsA(isA<ServerException>()),
+      );
+
+      verify(
+        () => authClient.createUserWithEmailAndPassword(
+          email: tEmail,
+          password: tPassword,
+        ),
+      ).called(1);
+      verifyNoMoreInteractions(authClient);
+    });
+  });
   group('updateUser', () {
-    test('displayName', () async {
-      await dataSource.signUp(
-        email: tEmail,
-        fullName: tFullName,
-        password: tPassword,
-      );
-      await dataSource.updateUser(
-        action: UpdateUserAction.displayName,
-        userData: 'new name',
-      );
-
-      expect(authClient.currentUser!.displayName, 'new name');
+    test('', () async{
+      when();
+      expect(, );
+      verify().called(1);
+      verifyNoMoreInteractions();
     });
-    test('email', () async {
-      await dataSource.signUp(
-        email: tEmail,
-        fullName: tFullName,
-        password: tPassword,
-      );
-      await dataSource.updateUser(
-        action: UpdateUserAction.email,
-        userData: 'newEmail@mail.com',
-      );
-
-      expect(authClient.currentUser!.email, 'newEmail@mail.com');
+    test('', () async{
+      when();
+      expect(, );
+      verify().called(1);
+      verifyNoMoreInteractions();
     });
-    test('', () async {});
   });
 }
