@@ -164,7 +164,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           );
           await _authClient.currentUser
               ?.updatePassword(newData['newPassword'] as String);
-          await _updateUserData({'password': newData['newPassword']});
+        // await _updateUserData({'password': newData['newPassword']});
         case UpdateUserAction.profilePic:
           //putting stuff inside bucket
           final ref = _dbClient
