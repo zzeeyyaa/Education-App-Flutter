@@ -18,7 +18,7 @@ void main() {
     registerFallbackValue(UpdateUserAction.email);
   });
 
-  const tUpdateUser = UpdateUserParams.empyt();
+  const tUpdateUser = UpdateUserParams.empty();
 
   test('should call [AuthRepo.UpdateUser] and return [void]', () async {
     when(

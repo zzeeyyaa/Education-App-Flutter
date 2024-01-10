@@ -23,7 +23,7 @@ class UpdateUserParams extends Equatable {
     required this.userData,
   });
 
-  const UpdateUserParams.empyt()
+  const UpdateUserParams.empty()
       : this(
           action: UpdateUserAction.displayName,
           userData: '',

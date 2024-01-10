@@ -166,7 +166,9 @@ void main() {
         () async {
       when(
         () => authClient.createUserWithEmailAndPassword(
-            email: any(named: 'email'), password: any(named: 'password')),
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
       ).thenAnswer((_) async => userCredential);
 
       when(
