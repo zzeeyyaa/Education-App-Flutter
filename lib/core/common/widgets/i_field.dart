@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class IField extends StatelessWidget {
   const IField({
     required this.controller,
-    required this.filled,
-    required this.obscuredText,
-    required this.readOnly,
-    required this.overrideValidator,
+    this.filled = false,
+    this.obscuredText = false,
+    this.readOnly = false,
+    this.overrideValidator = false,
     super.key,
     this.validator,
     this.fillColor,
