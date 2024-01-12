@@ -1,20 +1,57 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:education_app/core/common/widgets/i_field.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 
-class SignInForm extends StatelessWidget {
+class SignInForm extends StatefulWidget {
   const SignInForm({
-    Key? key,
     required this.emailController,
     required this.passwordController,
     required this.formKey,
-  }) : super(key: key);
+    super.key,
+  });
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final GlobalKey<FormState> formKey;
 
   @override
+  State<SignInForm> createState() => _SignInFormState();
+}
+
+class _SignInFormState extends State<SignInForm> {
+  bool obscuredPassword = true;
+
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Form(
+      key: widget.formKey,
+      child: Column(
+        children: [
+          IField(
+            controller: widget.emailController,
+            hintText: 'Email Address',
+            keyboardType: TextInputType.emailAddress,
+          ),
+          const SizedBox(height: 25),
+          IField(
+            controller: widget.passwordController,
+            hintText: 'Password',
+            obscuredText: obscuredPassword,
+            keyboardType: TextInputType.visiblePassword,
+            suffixIcon: IconButton(
+              onPressed: () {
+                setState(() {
+                  obscuredPassword = !obscuredPassword;
+                });
+              },
+              icon: Icon(
+                obscuredPassword ? IconlyLight.show : IconlyLight.hide,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
