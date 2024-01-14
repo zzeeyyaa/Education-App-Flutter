@@ -29,62 +29,65 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: widget.formKey,
-        child: Column(
-          children: [
-            IField(
-              controller: widget.emailController,
-              hintText: 'Email Address',
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 25),
-            IField(
-              controller: widget.fullNameController,
-              hintText: 'Full Name',
-              keyboardType: TextInputType.name,
-            ),
-            const SizedBox(height: 25),
-            IField(
-              controller: widget.passwordController,
-              hintText: 'Password',
-              keyboardType: TextInputType.visiblePassword,
-              obscuredText: obscuredPassword,
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    obscuredPassword = !obscuredPassword;
-                  });
-                },
-                icon: Icon(
-                  obscuredPassword ? IconlyLight.show : IconlyLight.hide,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-            const SizedBox(height: 25),
-            IField(
-              controller: widget.confirmPasswordController,
-              hintText: 'Confirm Password',
-              obscuredText: obscuredPassword,
-              keyboardType: TextInputType.visiblePassword,
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    obscuredPassword = !obscuredPassword;
-                  });
-                },
-                icon: Icon(
-                  obscuredPassword ? IconlyLight.show : IconlyLight.hide,
-                ),
-              ),
-              validator: (value) {
-                if (value != widget.passwordController.text) {
-                  return 'Password do not match';
-                }
-                return null;
+      key: widget.formKey,
+      child: Column(
+        children: [
+          IField(
+            controller: widget.emailController,
+            hintText: 'Email Address',
+            keyboardType: TextInputType.emailAddress,
+          ),
+          const SizedBox(height: 25),
+          IField(
+            controller: widget.fullNameController,
+            hintText: 'Full Name',
+            keyboardType: TextInputType.name,
+          ),
+          const SizedBox(height: 25),
+          IField(
+            controller: widget.passwordController,
+            hintText: 'Password',
+            keyboardType: TextInputType.visiblePassword,
+            obscuredText: obscuredPassword,
+            suffixIcon: IconButton(
+              onPressed: () {
+                setState(() {
+                  obscuredPassword = !obscuredPassword;
+                });
               },
+              icon: Icon(
+                obscuredPassword ? IconlyLight.show : IconlyLight.hide,
+                color: Colors.grey,
+              ),
             ),
-          ],
-        ));
+          ),
+          const SizedBox(height: 25),
+          IField(
+            controller: widget.confirmPasswordController,
+            hintText: 'Confirm Password',
+            obscuredText: obscuredPassword,
+            keyboardType: TextInputType.visiblePassword,
+            suffixIcon: IconButton(
+              onPressed: () {
+                setState(() {
+                  obscuredPassword = !obscuredPassword;
+                });
+              },
+              icon: Icon(
+                obscuredPassword ? IconlyLight.show : IconlyLight.hide,
+                color: Colors.grey,
+              ),
+            ),
+            overrideValidator: true,
+            validator: (value) {
+              if (value != widget.passwordController.text) {
+                return 'Password do not match';
+              }
+              return null;
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
