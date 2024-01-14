@@ -59,9 +59,11 @@ class _SignInScreenState extends State<SignInScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Sign in to your account',
-                        style: TextStyle(fontSize: 14),
+                      const Expanded(
+                        child: Text(
+                          'Sign in to your account',
+                          style: TextStyle(fontSize: 14),
+                        ),
                       ),
                       Baseline(
                         baseline: 100,
