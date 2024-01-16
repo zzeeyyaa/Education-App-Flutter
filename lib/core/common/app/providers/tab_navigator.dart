@@ -12,6 +12,48 @@ class TabNavigator extends ChangeNotifier {
   final TabItem _initialPage;
 
   final List<TabItem> _navigationStack = [];
+
+  TabItem get currentPage => _navigationStack.last;
+
+  void push(TabItem page) {
+    _navigationStack.add(page);
+    notifyListeners();
+  }
+
+  void pop() {
+    if (_navigationStack.length > 1) {
+      _navigationStack.removeLast();
+      notifyListeners();
+    }
+  }
+
+  void popToRoot() {
+    _navigationStack
+      ..clear()
+      ..add(_initialPage);
+    notifyListeners();
+  }
+
+  void popTo(TabItem page) {
+    _navigationStack.remove(page);
+    notifyListeners();
+  }
+
+  void popUntill(TabItem? page) {
+    if (page == null) {
+      return popToRoot();
+    } else if (_navigationStack.length > 1) {
+      _navigationStack.removeRange(1, _navigationStack.indexOf(page) + 1);
+      notifyListeners();
+    }
+  }
+
+  void pushAndRemoveUntil(TabItem page) {
+    _navigationStack
+      ..clear()
+      ..add(page);
+    notifyListeners();
+  }
 }
 
 class TabItem extends Equatable {
