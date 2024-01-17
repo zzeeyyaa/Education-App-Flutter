@@ -9,11 +9,19 @@ class DashboardController extends ChangeNotifier {
   final List<Widget> _screen = [
     //add a page
     ChangeNotifierProvider(
-      create: (_) => TabNavigator(
-        TabItem(
-          child: const Placeholder(),
-        ),
-      ),
+      create: (_) => TabNavigator(TabItem(child: const Placeholder())),
+      child: const PersistentView(),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => TabNavigator(TabItem(child: const Placeholder())),
+      child: const PersistentView(),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => TabNavigator(TabItem(child: const Placeholder())),
+      child: const PersistentView(),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => TabNavigator(TabItem(child: const Placeholder())),
       child: const PersistentView(),
     ),
   ];
@@ -27,6 +35,8 @@ class DashboardController extends ChangeNotifier {
   int get currentIndex => _currentIndex;
 
   void changeIndex(int index) {
+    // debugPrint('newIndex: $index');
+    // debugPrint('currentIndex: $currentIndex');
     if (_currentIndex == index) return;
     _currentIndex = index;
     _indexHistory.add(index);
