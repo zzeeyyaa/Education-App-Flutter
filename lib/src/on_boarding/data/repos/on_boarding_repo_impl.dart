@@ -27,12 +27,6 @@ class OnBoardingRepoImpl implements OnBooardingRepo {
     }
   }
 
-  // @override
-  // ResultFuture<bool> checkIfUserIsFirstTimer() {
-  //   // TODO: implement checkIfUserIsFirstTimer
-  //   throw UnimplementedError();
-  // }
-
   @override
   ResultFuture<bool> checkIfUserIsFirstTimer() async {
     try {
