@@ -7,6 +7,7 @@ import 'package:education_app/core/extensions/context_extension.dart';
 import 'package:education_app/core/res/media_res.dart';
 import 'package:education_app/core/utils/core_utils.dart';
 import 'package:education_app/src/auth/presentation/bloc/auth_bloc.dart';
+import 'package:education_app/src/profile/presentation/widgets/edit_profile_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -109,6 +110,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   }
                   final bloc = context.read<AuthBloc>();
                   if (passwordChanged) {
+                    // debugPrint('password changed');
                     if (oldPasswordController.text.isEmpty) {
                       CoreUtils.showSnackBar(
                         context,
@@ -127,6 +129,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     );
                   }
                   if (nameChanged) {
+                    // debugPrint('named changed');
                     bloc.add(
                       UpdateUserEvent(
                         action: UpdateUserAction.displayName,
@@ -135,6 +138,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     );
                   }
                   if (emailChanged) {
+                    // debugPrint('email changed');
                     bloc.add(
                       UpdateUserEvent(
                         action: UpdateUserAction.email,
@@ -143,6 +147,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     );
                   }
                   if (bioChanged) {
+                    // debugPrint('bio changed');
                     bloc.add(
                       UpdateUserEvent(
                         action: UpdateUserAction.bio,
@@ -151,6 +156,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     );
                   }
                   if (imageChange) {
+                    // debugPrint('image changed');
                     bloc.add(
                       UpdateUserEvent(
                         action: UpdateUserAction.profilePic,
@@ -186,7 +192,78 @@ class _EditProfileViewState extends State<EditProfileView> {
           ),
           body: GradientBackground(
             image: MediaRes.profileGradientBackground,
-            child: ListView(),
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              children: [
+                Builder(
+                  builder: (context) {
+                    final user = context.currentUser!;
+                    final userImage =
+                        user.profilePic == null || user.profilePic!.isEmpty
+                            ? null
+                            : user.profilePic;
+                    return Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: pickedImage != null
+                              ? FileImage(pickedImage!)
+                              : userImage != null
+                                  ? NetworkImage(userImage)
+                                  : const AssetImage(MediaRes.user)
+                                      as ImageProvider,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black.withOpacity(.5),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: pickImage,
+                            icon: Icon(
+                              (pickedImage != null || user.profilePic != null)
+                                  ? Icons.edit
+                                  : Icons.add_a_photo,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'We recommended an image of at least 400x400',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF777E90),
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                EditProfileForm(
+                  fullNameController: fullNameController,
+                  emailController: emailController,
+                  passwordController: passwordController,
+                  oldPasswordController: oldPasswordController,
+                  bioController: bioController,
+                ),
+              ],
+            ),
           ),
         );
       },
