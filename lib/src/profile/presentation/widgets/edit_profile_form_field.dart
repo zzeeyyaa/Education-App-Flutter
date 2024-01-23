@@ -6,12 +6,14 @@ class EditProfileFormField extends StatelessWidget {
     required this.fieldTitle,
     required this.controller,
     this.hintText,
+    this.readOnly = false,
     super.key,
   });
 
   final String fieldTitle;
   final TextEditingController controller;
   final String? hintText;
+  final bool readOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class EditProfileFormField extends StatelessWidget {
         IField(
           controller: controller,
           hintText: hintText,
+          readOnly: readOnly,
         ),
         const SizedBox(height: 30),
       ],
