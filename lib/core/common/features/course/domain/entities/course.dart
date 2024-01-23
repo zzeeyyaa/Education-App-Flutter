@@ -16,6 +16,19 @@ class Course extends Equatable {
     this.imageIsFile = false,
   });
 
+  Course.empty()
+      : this(
+          id: '_empty.id ',
+          title: '_empty.title',
+          description: '_empty.description',
+          groupId: '_empty.groupId',
+          numberOfExams: 0,
+          numberOfMaterials: 0,
+          numberOfVideos: 0,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
+
   final String id;
   final String title;
   final String? description;
