@@ -21,7 +21,6 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     super.initState();
-    //handle landscape
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -41,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
             return Scaffold(
               body: IndexedStack(
                 index: controller.currentIndex,
-                children: controller.screen,
+                children: controller.screens,
               ),
               bottomNavigationBar: BottomNavigationBar(
                 currentIndex: controller.currentIndex,
@@ -59,7 +58,7 @@ class _DashboardState extends State<Dashboard> {
                           ? MyColors.primaryColour
                           : Colors.grey,
                     ),
-                    label: 'home',
+                    label: 'Home',
                     backgroundColor: Colors.white,
                   ),
                   BottomNavigationBarItem(
@@ -95,7 +94,7 @@ class _DashboardState extends State<Dashboard> {
                           ? MyColors.primaryColour
                           : Colors.grey,
                     ),
-                    label: 'Profile',
+                    label: 'User',
                     backgroundColor: Colors.white,
                   ),
                 ],
