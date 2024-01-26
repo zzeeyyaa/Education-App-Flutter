@@ -22,7 +22,11 @@ class ProfileBody extends StatelessWidget {
                 Expanded(
                   child: UserCard(
                     infoThemeColor: MyColors.physicsTileColour,
-                    infoIcon: const Icon(IconlyLight.document),
+                    infoIcon: const Icon(
+                      IconlyLight.document,
+                      size: 24,
+                      color: Color(0xFF767DFF),
+                    ),
                     infoTitle: 'Course',
                     infoValue: user!.enrolledCourseIds.length.toString(),
                   ),
@@ -34,6 +38,7 @@ class ProfileBody extends StatelessWidget {
                     infoIcon: Image.asset(
                       MediaRes.scoreboard,
                       height: 24,
+                      width: 24,
                     ),
                     infoTitle: 'Score',
                     infoValue: user.points.toString(),
@@ -41,7 +46,7 @@ class ProfileBody extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(width: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Expanded(
