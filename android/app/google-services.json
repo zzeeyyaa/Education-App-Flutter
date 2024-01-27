@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "777507341449",
-    "project_id": "education-app-efb17",
-    "storage_bucket": "education-app-efb17.appspot.com"
+    "project_number": "646786214091",
+    "project_id": "education-app-zia-127dc",
+    "storage_bucket": "education-app-zia-127dc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:777507341449:android:d22171c173f3cffda6b258",
+        "mobilesdk_app_id": "1:646786214091:android:ff8cc2a398c881ed70d34e",
         "android_client_info": {
           "package_name": "com.example.education_app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDm-Hzdkh-5WoW8SZAJb8F3PoJbVGmE8Hc"
+          "current_key": "AIzaSyAce0hnVMWO0N-mQMw3lHffdrNWjKnSNxA"
         }
       ],
       "services": {

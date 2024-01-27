@@ -45,3 +45,6 @@ app.*.map.json
 
 # Assets
 /assets/
+
+/lib/flutterfire_options.dart/
+lib\firebase_options.dart

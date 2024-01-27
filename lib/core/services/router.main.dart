@@ -31,15 +31,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case Dashboard.routeName:
       return _pageBuilder(
-        (p0) => BlocProvider(
-          create: (context) => sl<AuthBloc>(),
-          child: const Dashboard(),
-        ),
+        (_) => const Dashboard(),
         settings: settings,
       );
     case SignInScreen.routeName:
       return _pageBuilder(
-        (_) => const SignInScreen(),
+        (_) => BlocProvider(
+          create: (_) => sl<AuthBloc>(),
+          child: const SignInScreen(),
+        ),
         settings: settings,
       );
     case SignUpScreen.routeName:
@@ -52,7 +52,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case '/forgot-password':
       return _pageBuilder(
-        (p0) => const fui.ForgotPasswordScreen(),
+        (_) => const fui.ForgotPasswordScreen(),
         settings: settings,
       );
     default:
