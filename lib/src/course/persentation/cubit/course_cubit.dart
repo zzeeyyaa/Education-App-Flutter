@@ -7,7 +7,12 @@ import 'package:equatable/equatable.dart';
 part 'course_state.dart';
 
 class CourseCubit extends Cubit<CourseState> {
-  CourseCubit(this._addCourse, this._getCourse) : super(const CourseInitial());
+  CourseCubit({
+    required AddCourse addCourse,
+    required GetCourse getCourse,
+  })  : _addCourse = addCourse,
+        _getCourse = getCourse,
+        super(const CourseInitial());
 
   final AddCourse _addCourse;
   final GetCourse _getCourse;
