@@ -20,7 +20,7 @@ void main() {
   setUp(() {
     addCourse = MockAddCourse();
     getCourse = MockGetCourse();
-    cubit = CourseCubit(addCourse, getCourse);
+    cubit = CourseCubit(addCourse: addCourse, getCourse: getCourse);
   });
 
   final tCourse = CourseModel.empty();
