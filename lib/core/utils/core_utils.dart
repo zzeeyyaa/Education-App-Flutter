@@ -25,4 +25,13 @@ class CoreUtils {
         ),
       );
   }
+
+  static void showLoadingDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
 }
