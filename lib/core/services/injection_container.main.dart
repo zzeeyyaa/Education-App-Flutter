@@ -69,8 +69,5 @@ Future<void> _initCourse() async {
         storage: sl(),
         auth: sl(),
       ),
-    )
-    ..registerLazySingleton(() => FirebaseFirestore.instance)
-    ..registerLazySingleton(() => FirebaseStorage.instance)
-    ..registerLazySingleton(() => FirebaseAuth.instance);
+    );
 }
