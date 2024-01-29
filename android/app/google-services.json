@@ -1,13 +1,32 @@
 {
   "project_info": {
-    "project_number": "646786214091",
-    "project_id": "education-app-zia-127dc",
-    "storage_bucket": "education-app-zia-127dc.appspot.com"
+    "project_number": "9346113791",
+    "project_id": "testing-98078",
+    "storage_bucket": "testing-98078.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:646786214091:android:ff8cc2a398c881ed70d34e",
+        "mobilesdk_app_id": "1:9346113791:android:cb50e683fb8026547decca",
+        "android_client_info": {
+          "package_name": "com.dbestech.education_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo-taAHzKXnv0zSE7Xdh4Nq_VuDlWOQ6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9346113791:android:cf288b546122ccb57decca",
         "android_client_info": {
           "package_name": "com.example.education_app"
         }
@@ -15,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAce0hnVMWO0N-mQMw3lHffdrNWjKnSNxA"
+          "current_key": "AIzaSyCo-taAHzKXnv0zSE7Xdh4Nq_VuDlWOQ6M"
         }
       ],
       "services": {
