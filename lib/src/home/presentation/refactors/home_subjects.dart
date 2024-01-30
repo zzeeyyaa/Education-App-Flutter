@@ -3,6 +3,7 @@ import 'package:education_app/core/extensions/context_extension.dart';
 import 'package:education_app/core/res/my_colors.dart';
 import 'package:education_app/src/course/domain/entities/course.dart';
 import 'package:education_app/src/course/persentation/views/all_courses_view.dart';
+import 'package:education_app/src/course/persentation/views/course_details_screen.dart';
 import 'package:education_app/src/home/presentation/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 
@@ -38,13 +39,14 @@ class HomeSubjects extends StatelessWidget {
               .map(
                 (course) => CourseTile(
                   course: course,
-                  //TODO(COURSE DETAILS) : change to pushNamed and route
-                  onTap: () => Navigator.of(context)
-                      .pushNamed('/unknown-route', arguments: course),
+                  onTap: () => Navigator.of(context).pushNamed(
+                    CourseDetailScreen.routeName,
+                    arguments: course,
+                  ),
                 ),
               )
               .toList(),
-        )
+        ),
       ],
     );
   }
