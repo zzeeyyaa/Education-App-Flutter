@@ -13,7 +13,7 @@ extension ContextExt on BuildContext {
 
   Size get size => mediaQuery.size;
   double get height => size.height;
-  double get widht => size.width;
+  double get width => size.width;
 
   UserProvider get userProvider => read<UserProvider>();
 
