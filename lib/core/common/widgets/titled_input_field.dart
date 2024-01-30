@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class TitledInputField extends StatelessWidget {
   const TitledInputField({
-    this.required = true,
     required this.controller,
     required this.title,
+    this.required = true,
     super.key,
     this.hintText,
     this.hintStyle,
