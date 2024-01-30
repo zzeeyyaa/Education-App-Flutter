@@ -38,7 +38,7 @@ class ProfileHeader extends StatelessWidget {
               const SizedBox(height: 8),
               Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: context.widht * .15,
+                  horizontal: context.width * .15,
                 ),
                 child: Text(
                   user.bio!,

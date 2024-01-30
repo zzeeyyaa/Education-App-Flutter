@@ -19,16 +19,16 @@ class _TinderCardsState extends State<TinderCards>
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: context.widht,
-        width: context.widht,
+        height: context.width,
+        width: context.width,
         child: TinderSwapCard(
           cardController: cardController,
           totalNum: totalCards,
           swipeEdge: 4,
-          maxWidth: context.widht,
-          maxHeight: context.widht * .9,
-          minWidth: context.widht * .71,
-          minHeight: context.widht * .85,
+          maxWidth: context.width,
+          maxHeight: context.width * .9,
+          minWidth: context.width * .71,
+          minHeight: context.width * .85,
           allowSwipe: false,
           swipeUpdateCallback:
               (DragUpdateDetails details, Alignment alignment) {
