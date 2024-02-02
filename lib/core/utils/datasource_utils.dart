@@ -1,8 +1,8 @@
 import 'package:education_app/core/errors/exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class DateSourceUtils {
-  const DateSourceUtils._();
+class DataSourceUtils {
+  const DataSourceUtils._();
 
   static Future<void> authorizeUser(FirebaseAuth auth) async {
     final user = auth.currentUser;
