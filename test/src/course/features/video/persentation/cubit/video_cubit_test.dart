@@ -27,9 +27,8 @@ void main() {
   });
 
   final tServerFailure = ServerFailure(
-    message: 'video-not-found',
-    statusCode: 'There is no video record corresponding to this identifier. '
-        'The video may have been deleted',
+    message: 'Server Failure',
+    statusCode: 500,
   );
 
   group('addVideo', () {
