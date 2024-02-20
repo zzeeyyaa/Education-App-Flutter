@@ -70,7 +70,7 @@ class ResourceModel extends Resource {
       'title': title,
       'courseId': courseId,
       'description': description,
-      'uploadedDate': uploadedDate,
+      'uploadedDate': FieldValue.serverTimestamp(),
       'isFile': isFile,
       'fileURL': fileURL,
       'fileExtension': fileExtension,
