@@ -12,9 +12,9 @@ class MaterialRepoImpl implements MaterialRepo {
   final MaterialRemoteDatasource _remoteDatasource;
 
   @override
-  ResultVoid addMaterial(Resource resource) async {
+  ResultVoid addMaterial(Resource material) async {
     try {
-      await _remoteDatasource.adddMaterial(resource);
+      await _remoteDatasource.adddMaterial(material);
       return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

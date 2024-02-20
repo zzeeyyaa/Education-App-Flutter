@@ -6,5 +6,5 @@ abstract class MaterialRepo {
 
   ResultFuture<List<Resource>> getMaterials(String courseId);
 
-  ResultVoid addMaterial(Resource resource);
+  ResultVoid addMaterial(Resource material);
 }
