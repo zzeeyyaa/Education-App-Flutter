@@ -53,10 +53,13 @@ class ResourceModel extends Resource {
   }) {
     return ResourceModel(
       id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
       courseId: courseId ?? this.courseId,
       uploadedDate: uploadedDate ?? this.uploadedDate,
       fileURL: fileURL ?? this.fileURL,
       isFile: isFile ?? this.isFile,
+      author: author ?? this.author,
       fileExtension: fileExtension ?? this.fileExtension,
     );
   }
