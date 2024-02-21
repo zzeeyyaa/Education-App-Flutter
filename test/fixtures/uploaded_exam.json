@@ -1,0 +1,21 @@
+{
+  "id": "",
+  "courseId": "",
+  "title": "",
+  "image_url": "",
+  "Description": "",
+  "time_seconds": 0,
+  "questions": [
+    {
+      "id": "",
+      "question": "",
+      "answers": [
+        {
+          "identifier": "",
+          "Answer": ""
+        }
+      ],
+      "correct_answer": ""
+    }
+  ]
+}

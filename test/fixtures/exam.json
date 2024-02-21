@@ -1,0 +1,26 @@
+{
+    "id": "",
+    "courseId": "",
+    "title": "",
+    "description": "",
+    "timeLimit": 0,
+    "imageUrl": null,
+    "questions": [
+      {
+        "id": "",
+        "examId": "",
+        "courseId": "",
+        "questionText": "",
+        "choices": [
+          {
+            "questionId": "",
+            "identifier": "",
+            "choiceAnswer": ""
+          }
+        ],
+        "correctAnswer": ""
+      }
+    ]
+  }
+  
+  
