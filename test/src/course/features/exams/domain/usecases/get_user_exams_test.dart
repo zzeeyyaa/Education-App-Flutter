@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:education_app/src/course/features/exams/domain/entities/user_choice.dart';
 import 'package:education_app/src/course/features/exams/domain/entities/user_exam.dart';
 import 'package:education_app/src/course/features/exams/domain/repos/exam_repo.dart';
 import 'package:education_app/src/course/features/exams/domain/usecases/get_user_exams.dart';
