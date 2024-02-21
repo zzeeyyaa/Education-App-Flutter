@@ -17,7 +17,6 @@ class Exam extends Equatable {
           id: '',
           courseId: '',
           title: '',
-          imageUrl: '',
           description: '',
           timeLimit: 0,
           questions: const [],

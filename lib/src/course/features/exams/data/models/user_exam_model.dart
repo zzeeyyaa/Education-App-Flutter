@@ -61,7 +61,7 @@ class UserExamModel extends UserExam {
   DataMap toMap() {
     return <String, dynamic>{
       'examId': examId,
-      'coruseId': courseId,
+      'courseId': courseId,
       'totalQuestions': totalQuestions,
       'examTitle': examTitle,
       'examImageUrl': examImageUrl,

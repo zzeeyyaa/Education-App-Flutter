@@ -60,6 +60,7 @@ class ExamQuestionModel extends ExamQuestion {
       examId: examId ?? this.examId,
       questionText: questionText ?? this.questionText,
       choices: choices ?? this.choices,
+      correctAnswer: correctAnswer ?? this.correctAnswer,
     );
   }
 

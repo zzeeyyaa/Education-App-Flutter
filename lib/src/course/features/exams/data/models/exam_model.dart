@@ -9,9 +9,9 @@ class ExamModel extends Exam {
   const ExamModel({
     required super.id,
     required super.courseId,
+    required super.title,
     required super.description,
     required super.timeLimit,
-    required super.title,
     super.imageUrl,
     super.questions,
   });
@@ -24,11 +24,11 @@ class ExamModel extends Exam {
           id: '',
           courseId: '',
           title: '',
-          imageUrl: '',
           description: '',
           timeLimit: 0,
           questions: const [],
         );
+
   ExamModel.fromMap(DataMap map)
       : this(
           id: map['id'] as String,
@@ -80,7 +80,7 @@ class ExamModel extends Exam {
       'id': id,
       'courseId': courseId,
       'title': title,
-      'dedscription': description,
+      'description': description,
       'timeLimit': timeLimit,
       'imageUrl': imageUrl,
     };

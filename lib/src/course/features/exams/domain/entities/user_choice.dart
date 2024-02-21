@@ -18,6 +18,8 @@ class UserChoice extends Equatable {
   final String questionId;
   final String correctChoice;
 
+  bool get isCorrect => userChoice == correctChoice;
+
   @override
   List<Object?> get props => [questionId, userChoice];
 }
