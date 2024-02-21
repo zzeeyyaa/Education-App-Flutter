@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:equatable/equatable.dart';
-
 import 'package:education_app/src/course/features/exams/domain/entities/question_choice.dart';
+import 'package:equatable/equatable.dart';
 
 class ExamQuestion extends Equatable {
   const ExamQuestion({
@@ -10,7 +8,7 @@ class ExamQuestion extends Equatable {
     required this.examId,
     required this.questionText,
     required this.choices,
-    this.corrextAnswer,
+    this.correctAnswer,
   });
 
   const ExamQuestion.empty()
@@ -26,7 +24,7 @@ class ExamQuestion extends Equatable {
   final String courseId;
   final String examId;
   final String questionText;
-  final String? corrextAnswer;
+  final String? correctAnswer;
   final List<QuestionChoice> choices;
 
   @override

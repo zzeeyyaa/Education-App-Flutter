@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 class UserExam extends Equatable {
   const UserExam({
     required this.dateSubmitted,
-    required this.answer,
+    required this.answers,
     required this.examId,
     required this.courseId,
     required this.totalQuestions,
@@ -20,7 +20,7 @@ class UserExam extends Equatable {
           examTitle: '',
           examImageUrl: '',
           dateSubmitted: date ?? DateTime.now(),
-          answer: const [],
+          answers: const [],
         );
 
   final String examId;
@@ -29,7 +29,7 @@ class UserExam extends Equatable {
   final String examTitle;
   final String? examImageUrl;
   final DateTime dateSubmitted;
-  final List<UserChoice> answer;
+  final List<UserChoice> answers;
 
   @override
   List<Object?> get props => [examId, courseId];
