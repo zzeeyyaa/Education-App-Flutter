@@ -6,7 +6,6 @@ import 'package:education_app/src/course/features/exams/domain/entities/question
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../../fixtures/fixture_reader.dart';
-import '../../domain/usecases/exam_repo.mock.dart';
 
 void main() {
   const tQuestionChoiceModel = QuestionChoiceModel.empty();
