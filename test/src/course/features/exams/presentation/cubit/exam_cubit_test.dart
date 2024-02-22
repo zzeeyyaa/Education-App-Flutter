@@ -4,7 +4,6 @@ import 'package:education_app/core/errors/failures.dart';
 import 'package:education_app/src/course/features/exams/data/models/exam_model.dart';
 import 'package:education_app/src/course/features/exams/data/models/exam_question_model.dart';
 import 'package:education_app/src/course/features/exams/data/models/user_exam_model.dart';
-import 'package:education_app/src/course/features/exams/domain/entities/exam.dart';
 import 'package:education_app/src/course/features/exams/domain/usecases/get_exam_questions.dart';
 import 'package:education_app/src/course/features/exams/domain/usecases/get_exams.dart';
 import 'package:education_app/src/course/features/exams/domain/usecases/get_user_course_exams.dart';
