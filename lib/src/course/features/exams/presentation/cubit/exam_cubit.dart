@@ -1,0 +1,106 @@
+import 'dart:math';
+
+import 'package:bloc/bloc.dart';
+import 'package:education_app/src/course/features/exams/domain/entities/exam.dart';
+import 'package:education_app/src/course/features/exams/domain/entities/exam_question.dart';
+import 'package:education_app/src/course/features/exams/domain/entities/user_exam.dart';
+import 'package:education_app/src/course/features/exams/domain/usecases/get_exam_questions.dart';
+import 'package:education_app/src/course/features/exams/domain/usecases/get_exams.dart';
+import 'package:education_app/src/course/features/exams/domain/usecases/get_user_course_exams.dart';
+import 'package:education_app/src/course/features/exams/domain/usecases/get_user_exams.dart';
+import 'package:education_app/src/course/features/exams/domain/usecases/submit_exam.dart';
+import 'package:education_app/src/course/features/exams/domain/usecases/update_exam.dart';
+import 'package:education_app/src/course/features/exams/domain/usecases/upload_exam.dart';
+import 'package:equatable/equatable.dart';
+
+part 'exam_state.dart';
+
+class ExamCubit extends Cubit<ExamState> {
+  ExamCubit({
+    required GetExams getExams,
+    required GetExamQuestions getExamQuestions,
+    required UploadExam uploadExam,
+    required UpdateExam updateExam,
+    required SubmitExam submiteExam,
+    required GetUserExams getUserExams,
+    required GetUserCourseExams getUserCourseExams,
+  })  : _getExams = getExams,
+        _getExamQuestions = getExamQuestions,
+        _uploadExam = uploadExam,
+        _upadateExam = updateExam,
+        _submitExam = submiteExam,
+        _getUserExams = getUserExams,
+        _getUserCourseExams = getUserCourseExams,
+        super(const ExamInitial());
+
+  final GetExams _getExams;
+  final GetExamQuestions _getExamQuestions;
+  final UploadExam _uploadExam;
+  final UpdateExam _upadateExam;
+  final SubmitExam _submitExam;
+  final GetUserExams _getUserExams;
+  final GetUserCourseExams _getUserCourseExams;
+
+  Future<void> getExams(String courseId) async {
+    emit(const GettingExam());
+    final result = await _getExams(courseId);
+    result.fold(
+      (failure) => emit(ExamError(failure.errorMeesage)),
+      (exams) => emit(ExamsLoaded(exams)),
+    );
+  }
+
+  Future<void> getExamQuestions(Exam exam) async {
+    emit(const GettingExamQuestions());
+    final result = await _getExamQuestions(exam);
+    result.fold(
+      (failure) => emit(ExamError(failure.errorMeesage)),
+      (questions) => emit(ExamQuestionsLoaded(questions)),
+    );
+  }
+
+  Future<void> uploadExam(Exam exam) async {
+    emit(const UploadingExam());
+    final result = await _uploadExam(exam);
+    result.fold(
+      (failure) => emit(ExamError(failure.errorMeesage)),
+      (_) => emit(const ExamUploaded()),
+    );
+  }
+
+  Future<void> updateExam(Exam exam) async {
+    emit(const UpdatingExam());
+    final result = await _upadateExam(exam);
+    result.fold(
+      (failure) => emit(ExamError(failure.errorMeesage)),
+      (_) => emit(const ExamUpdated()),
+    );
+  }
+
+  Future<void> submitExam(UserExam exam) async {
+    emit(const SubmittingExam());
+    final result = await _submitExam(exam);
+    result.fold(
+      (failure) => emit(ExamError(failure.errorMeesage)),
+      (_) => emit(const ExamSubmitted()),
+    );
+  }
+
+  Future<void> getUserExams() async {
+    emit(const GettingUserExams());
+    final result = await _getUserExams();
+    result.fold(
+      (failure) => emit(ExamError(failure.errorMeesage)),
+      (exams) => emit(UserExamsLoaded(exams)),
+    );
+  }
+
+  Future<void> getUserCourseExams(String courseId) async {
+    emit(const GettingUserCourseExams());
+    final result = await _getUserCourseExams(courseId);
+    result.fold(
+      (failure) => emit(ExamError(failure.errorMeesage)),
+      (exams) => emit(UserCourseExamsLoaded(exams)),
+    );
+  }
+}
