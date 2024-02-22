@@ -108,14 +108,17 @@ Future<void> _initMaterial() async {
 
 Future<void> _initExam() async {
   sl
-    ..registerFactory(() => ExamCubit(
+    ..registerFactory(
+      () => ExamCubit(
         getExams: sl(),
         getExamQuestions: sl(),
         uploadExam: sl(),
         updateExam: sl(),
-        submiteExam: sl(),
+        submitExam: sl(),
         getUserExams: sl(),
-        getUserCourseExams: sl()))
+        getUserCourseExams: sl(),
+      ),
+    )
     ..registerLazySingleton(() => GetExams(sl()))
     ..registerLazySingleton(() => GetExamQuestions(sl()))
     ..registerLazySingleton(() => UploadExam(sl()))
