@@ -1,5 +1,11 @@
 import 'package:education_app/core/utils/typedefs.dart';
 
+abstract class FutureUsecaseWithoutParams<Type> {
+  const FutureUsecaseWithoutParams();
+
+  ResultFuture<Type> call();
+}
+
 abstract class FutureUsecaseWithParams<Type, Params> {
   const FutureUsecaseWithParams();
 
