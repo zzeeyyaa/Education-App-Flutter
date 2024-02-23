@@ -42,7 +42,8 @@ class MaterialRemoteDatasourceImpl implements MaterialRemoteDatasource {
           (material as ResourceModel).copyWith(id: materialRef.id);
       if (materialModel.isFile) {
         final materialFileRef = _storage.ref().child(
-            'courses/${materialModel.courseId}/materials/${materialModel.id}/material');
+              'courses/${materialModel.courseId}/materials/${materialModel.id}/material',
+            );
         await materialFileRef
             .putFile(File(materialModel.fileURL))
             .then((value) async {

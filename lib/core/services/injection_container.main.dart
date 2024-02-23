@@ -93,7 +93,8 @@ Future<void> _initVideo() async {
 Future<void> _initMaterial() async {
   sl
     ..registerFactory(
-        () => MaterialCubit(addMaterial: sl(), getMaterials: sl()))
+      () => MaterialCubit(addMaterial: sl(), getMaterials: sl()),
+    )
     ..registerLazySingleton(() => AddMaterial(sl()))
     ..registerLazySingleton(() => GetMaterials(sl()))
     ..registerLazySingleton<MaterialRepo>(() => MaterialRepoImpl(sl()))

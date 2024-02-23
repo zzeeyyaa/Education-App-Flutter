@@ -34,8 +34,8 @@ void main() {
 
   group('getExamQuestions', () {
     test(
-        'shsould return [List<ExamQuestions>] when call remoteDatasource successful',
-        () async {
+        'shsould return [List<ExamQuestions>] when call '
+        'remoteDatasource successful', () async {
       when(() => remoteDatasource.getExamQuestions(any()))
           .thenAnswer((_) async => []);
 
@@ -48,8 +48,8 @@ void main() {
       verifyNoMoreInteractions(remoteDatasource);
     });
     test(
-        'should return ServerFailure when call to remotedatasource unsuccessful',
-        () async {
+        'should return ServerFailure when call to '
+        'remotedatasource unsuccessful', () async {
       when(() => remoteDatasource.getExamQuestions(any()))
           .thenThrow(tException);
 
@@ -124,9 +124,11 @@ void main() {
       final result = await repoImpl.getUserCourseExams(tExamModel.courseId);
 
       expect(
-          result,
-          Left<ServerFailure, List<UserExam>>(
-              ServerFailure.fromException(tException)));
+        result,
+        Left<ServerFailure, List<UserExam>>(
+          ServerFailure.fromException(tException),
+        ),
+      );
 
       verify(() => remoteDatasource.getUserCourseExams(tExamModel.courseId))
           .called(1);
@@ -153,9 +155,11 @@ void main() {
       final result = await repoImpl.getUserExams();
 
       expect(
-          result,
-          Left<ServerFailure, List<UserExam>>(
-              ServerFailure.fromException(tException)));
+        result,
+        Left<ServerFailure, List<UserExam>>(
+          ServerFailure.fromException(tException),
+        ),
+      );
 
       verify(() => remoteDatasource.getUserExams()).called(1);
 
@@ -181,8 +185,12 @@ void main() {
 
       final result = await repoImpl.submitExam(tUserExamModel);
 
-      expect(result,
-          Left<ServerFailure, void>(ServerFailure.fromException(tException)));
+      expect(
+        result,
+        Left<ServerFailure, void>(
+          ServerFailure.fromException(tException),
+        ),
+      );
 
       verify(() => remoteDatasource.submitExam(tUserExamModel)).called(1);
 
@@ -209,8 +217,12 @@ void main() {
 
       final result = await repoImpl.updateExam(tExamModel);
 
-      expect(result,
-          Left<ServerFailure, void>(ServerFailure.fromException(tException)));
+      expect(
+        result,
+        Left<ServerFailure, void>(
+          ServerFailure.fromException(tException),
+        ),
+      );
 
       verify(() => remoteDatasource.updateExam(tExamModel));
 
@@ -236,8 +248,10 @@ void main() {
 
       final result = await repoImpl.uploadExam(tExamModel);
 
-      expect(result,
-          Left<ServerFailure, void>(ServerFailure.fromException(tException)));
+      expect(
+        result,
+        Left<ServerFailure, void>(ServerFailure.fromException(tException)),
+      );
 
       verify(() => remoteDatasource.uploadExam(tExamModel)).called(1);
 

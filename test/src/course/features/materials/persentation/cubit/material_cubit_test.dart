@@ -58,9 +58,11 @@ void main() {
     blocTest<MaterialCubit, MaterialState>(
       'emits [MyState] when MyEvent is added.',
       build: () {
-        when(() => addMaterial(any())).thenAnswer((invocation) async => Left(
-              ServerFailure(message: 'Server Failure', statusCode: 500),
-            ));
+        when(() => addMaterial(any())).thenAnswer(
+          (invocation) async => Left(
+            ServerFailure(message: 'Server Failure', statusCode: 500),
+          ),
+        );
         return cubit;
       },
       act: (cubit) => cubit.addMaterial([tMaterial]),
