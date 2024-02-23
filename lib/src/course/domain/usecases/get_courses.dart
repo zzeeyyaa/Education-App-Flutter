@@ -3,7 +3,7 @@ import 'package:education_app/core/utils/typedefs.dart';
 import 'package:education_app/src/course/domain/entities/course.dart';
 import 'package:education_app/src/course/domain/repos/course_repo.dart';
 
-class GetCourse extends UsecaseWithoutParams<List<Course>> {
+class GetCourse extends FutureUsecaseWithoutParams<List<Course>> {
   const GetCourse(this._repo);
 
   final CourseRepo _repo;
