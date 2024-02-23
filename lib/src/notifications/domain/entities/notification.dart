@@ -7,15 +7,25 @@ class Notification extends Equatable {
     required this.id,
     required this.title,
     required this.body,
-    required this.categiry,
+    required this.category,
     required this.sentAt,
     this.seen = false,
   });
 
+  Notification.empty()
+      : this(
+          id: '',
+          title: '',
+          body: '',
+          category: NotificationCategory.NONE,
+          seen: false,
+          sentAt: DateTime.now(),
+        );
+
   final String id;
   final String title;
   final String body;
-  final NotificationCategory categiry;
+  final NotificationCategory category;
   final bool seen;
   final DateTime sentAt;
 
