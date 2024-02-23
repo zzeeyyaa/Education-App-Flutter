@@ -1,16 +1,16 @@
 import 'package:education_app/core/utils/typedefs.dart';
-import 'package:flutter/material.dart';
+import 'package:education_app/src/notifications/domain/entities/notification.dart';
 
 abstract class NotificationRepo {
   const NotificationRepo();
 
-  ResultVoid markAsRead(String notificationId);
+  ResultFuture<void> markAsRead(String notificationId);
 
-  ResultVoid clearAll();
+  ResultFuture<void> clearAll();
 
-  ResultVoid clear(String notificationId);
+  ResultFuture<void> clear(String notificationId);
 
-  ResultVoid sendNotification(Notification notification);
+  ResultFuture<void> sendNotification(Notification notification);
 
   ResultStream<List<Notification>> getNotifications();
 }

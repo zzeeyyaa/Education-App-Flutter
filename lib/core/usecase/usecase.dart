@@ -12,8 +12,8 @@ abstract class FutureUsecaseWithParams<Type, Params> {
   ResultFuture<Type> call(Params params);
 }
 
-abstract class StreamFutureUsecaseWithoutParams<Type> {
-  const StreamFutureUsecaseWithoutParams();
+abstract class StreamUsecaseWithoutParams<Type> {
+  const StreamUsecaseWithoutParams();
 
   ResultStream<Type> call();
 }
