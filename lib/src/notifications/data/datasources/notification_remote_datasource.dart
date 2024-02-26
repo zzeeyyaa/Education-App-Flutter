@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_app/core/errors/exceptions.dart';
-import 'package:education_app/core/extensions/context_extension.dart';
 import 'package:education_app/core/utils/datasource_utils.dart';
 import 'package:education_app/src/notifications/data/models/notification_model.dart';
 import 'package:education_app/src/notifications/domain/entities/notification.dart';
