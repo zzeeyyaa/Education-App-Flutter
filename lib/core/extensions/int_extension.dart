@@ -7,4 +7,8 @@ extension IntExt on int {
     }
     return 'over $data';
   }
+
+  String get pluralize {
+    return this > 1 ? 's' : '';
+  }
 }
