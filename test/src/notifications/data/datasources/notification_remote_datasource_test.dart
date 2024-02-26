@@ -38,7 +38,7 @@ void main() {
     );
   });
 
-  Future<QuerySnapshot<DataMap>> getNotification() async => firestore
+  Future<QuerySnapshot<DataMap>> getNotifications() async => firestore
       .collection('users')
       .doc(auth.currentUser!.uid)
       .collection('notifications')
@@ -157,8 +157,8 @@ void main() {
 
   group('clearAll', () {
     test(
-        "should delete every notification in the current user's sub-collections",
-        () async {
+        'should delete every notification in the '
+        "current user's sub-collections", () async {
       //create notifications sub-collection for current user
       for (var i = 0; i < 5; i++) {
         await addNotification(
@@ -166,7 +166,7 @@ void main() {
         );
       }
 
-      final collection = await getNotification();
+      final collection = await getNotifications();
 
       //assert that the notifications were added
       expect(collection.docs, hasLength(5));
@@ -174,10 +174,79 @@ void main() {
       //act
       await remoteDatasource.clearAll();
 
-      final notificationDocs = await getNotification();
+      final notificationDocs = await getNotifications();
 
       //ASSERT that the notificaitons were delete
-      expect(notificationDocs, isEmpty);
+      expect(notificationDocs.docs, isEmpty);
+    });
+  });
+
+  group('getNotifications', () {
+    test(
+        'should return a [Stream<List<Notification>>] when the call is success',
+        () async {
+      //arrange
+      final userId = auth.currentUser!.uid;
+
+      await firestore
+          .collection('users')
+          .doc(userId)
+          .set(const LocalUserModel.empty().copyWith(uid: userId).toMap());
+
+      final expectedNotifications = [
+        NotificationModel.empty(),
+        NotificationModel.empty().copyWith(
+          id: '1',
+          sentAt: DateTime.now().add(
+            const Duration(seconds: 50),
+          ),
+        ),
+      ];
+
+      for (final notification in expectedNotifications) {
+        await addNotification(notification);
+      }
+
+      //act
+      final result = remoteDatasource.getNotifications();
+
+      //assert
+      expect(result, emitsInOrder([equals(expectedNotifications.reversed)]));
+    });
+  });
+
+  group('markAsRead', () {
+    test('should mark the specified notification as read', () async {
+      var tId = '';
+
+      //create notifications sub-collection for current user
+      for (var i = 0; i < 5; i++) {
+        final docRef = await addNotification(
+          NotificationModel.empty().copyWith(
+            id: i.toString(),
+            seen: i.isEven,
+          ),
+        );
+        if (i == 1) {
+          tId = docRef.id;
+        }
+      }
+
+      final collection = await getNotifications();
+      //assert that the notifications were added
+      expect(collection.docs, hasLength(5));
+
+      //act
+      await remoteDatasource.markAsRead(tId);
+      final notificationDoc = await firestore
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('notifications')
+          .doc(tId)
+          .get();
+
+      //assert that the notification was marked as read
+      expect(notificationDoc.data()!['seen'], isTrue);
     });
   });
 
