@@ -1,6 +1,5 @@
 import 'package:education_app/core/common/app/providers/notifications_notifier.dart';
 import 'package:education_app/core/common/widgets/popup_item.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,14 +19,15 @@ class NotificationOptions extends StatelessWidget {
             PopupMenuItem<void>(
               onTap: notifier.toggleMuteNotifications,
               child: PopupItem(
-                  title: notifier.muteNotifications
-                      ? 'Un-mute Notifications'
-                      : 'Mute Notifications',
-                  icon: Icon(
-                    notifier.muteNotifications
-                        ? Icons.notifications_off_outlined
-                        : Icons.notifications_outlined,
-                  )),
+                title: notifier.muteNotifications
+                    ? 'Un-mute Notifications'
+                    : 'Mute Notifications',
+                icon: Icon(
+                  notifier.muteNotifications
+                      ? Icons.notifications_off_outlined
+                      : Icons.notifications_outlined,
+                ),
+              ),
             ),
           ],
         );
