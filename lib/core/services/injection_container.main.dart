@@ -136,13 +136,15 @@ Future<void> _initExam() async {
 
 Future<void> _initNotifications() async {
   sl
-    ..registerFactory(() => NotificationCubit(
-          clear: sl(),
-          clearAll: sl(),
-          getNotifications: sl(),
-          markAsRead: sl(),
-          sendNotification: sl(),
-        ))
+    ..registerFactory(
+      () => NotificationCubit(
+        clear: sl(),
+        clearAll: sl(),
+        getNotifications: sl(),
+        markAsRead: sl(),
+        sendNotification: sl(),
+      ),
+    )
     ..registerLazySingleton(() => Clear(sl()))
     ..registerLazySingleton(() => ClearAll(sl()))
     ..registerLazySingleton(() => GetNotifications(sl()))
