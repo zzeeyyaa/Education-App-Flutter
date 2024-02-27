@@ -51,7 +51,7 @@ class _HomeVideosState extends State<HomeVideos> {
                 seeAll: state.videos.length > 4,
                 onSeeAll: () => context.push(
                   BlocProvider(
-                    create: (context) => sl<VideoCubit>(),
+                    create: (_) => sl<VideoCubit>(),
                   ),
                 ),
               ),
