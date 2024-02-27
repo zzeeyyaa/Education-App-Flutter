@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:education_app/core/extensions/string_extension.dart';
 import 'package:education_app/core/res/media_res.dart';
-import 'package:education_app/src/course/features/videos/data/models/video_model.dart';
 import 'package:education_app/src/course/features/videos/domain/entities/video.dart';
 import 'package:education_app/src/course/features/videos/presentation/utils/video_utils.dart';
 import 'package:flutter/material.dart';
