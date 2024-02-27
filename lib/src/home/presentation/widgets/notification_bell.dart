@@ -65,8 +65,8 @@ class _NotificationBellState extends State<NotificationBell> {
             child: GestureDetector(
               onTap: () {
                 context.push(
-                  BlocProvider(
-                    create: (_) => sl<NotificationCubit>(),
+                  BlocProvider.value(
+                    value: sl<NotificationCubit>(),
                     child: const NotificationsView(),
                   ),
                 );
