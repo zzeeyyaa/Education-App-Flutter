@@ -33,9 +33,7 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CourseOfTheDay()),
         ChangeNotifierProvider(create: (_) => DashboardController()),
         ChangeNotifierProvider(
-          create: (_) => NotificationsNotifier(
-            sl<SharedPreferences>(),
-          ),
+          create: (_) => NotificationsNotifier(sl<SharedPreferences>()),
         ),
         ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
