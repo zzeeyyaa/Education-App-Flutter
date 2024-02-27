@@ -36,6 +36,7 @@ class VideoUtils {
             missingDataText.substring(0, missingDataText.length - 1);
         final message = 'Could not get video data. Please try again.\n'
             'The following data is missing: $missingDataText';
+        showSnack(message);
         return null;
       }
       return VideoModel.empty().copyWith(
@@ -57,6 +58,7 @@ class VideoUtils {
         Uri.parse(videoURL),
         mode: LaunchMode.externalApplication,
       )) {
+        // ignore: use_build_context_synchronously
         CoreUtils.showSnackBar(
           context,
           'Could not lauch $videoURL',
