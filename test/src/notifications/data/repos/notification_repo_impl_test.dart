@@ -97,8 +97,8 @@ void main() {
 
   group('markAsRead', () {
     test(
-        'should compelte successfully when call to remtoedatasource is successs',
-        () async {
+        'should compelte successfully when '
+        'call to remtoedatasource is successs', () async {
       when(() => remoteDatasource.markAsRead(any()))
           .thenAnswer((_) async => const Right<dynamic, void>(null));
 
@@ -174,8 +174,8 @@ void main() {
 
   group('getNotifications', () {
     test(
-        'should emit [List<Notification>] when call remotedatasource is success',
-        () async {
+        'should emit [List<Notification>] when '
+        'call remotedatasource is success', () async {
       final notifications = [NotificationModel.empty()];
       when(() => remoteDatasource.getNotifications())
           .thenAnswer((_) => Stream.value(notifications));
