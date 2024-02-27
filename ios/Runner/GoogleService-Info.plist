@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDthabvj8KBxga-5aBwnYtOikQ2SRKSxgA</string>
+	<string>AIzaSyBZwfuXhnEv1iL1ttFUkgtMQytky40qHUo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>777507341449</string>
+	<string>9346113791</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.educationApp</string>
+	<string>com.dbestech.educationApp</string>
 	<key>PROJECT_ID</key>
-	<string>education-app-efb17</string>
+	<string>testing-98078</string>
 	<key>STORAGE_BUCKET</key>
-	<string>education-app-efb17.appspot.com</string>
+	<string>testing-98078.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:777507341449:ios:f088068a0be2cb79a6b258</string>
+	<string>1:9346113791:ios:94a1feca55bd79147decca</string>
 </dict>
 </plist>
