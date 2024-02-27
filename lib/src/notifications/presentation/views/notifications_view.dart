@@ -9,7 +9,6 @@ import 'package:education_app/src/notifications/presentation/widgets/notificatio
 import 'package:education_app/src/notifications/presentation/widgets/notification_tile.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
