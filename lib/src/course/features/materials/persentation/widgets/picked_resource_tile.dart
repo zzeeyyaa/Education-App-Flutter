@@ -1,13 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:education_app/core/res/media_res.dart';
+import 'package:education_app/src/course/features/materials/domain/entities/picked_resource.dart';
 import 'package:education_app/src/course/features/materials/persentation/widgets/picked_resource_horizontal_text.dart';
 import 'package:flutter/material.dart';
 
-import 'package:education_app/src/course/features/materials/domain/entities/picked_resource.dart';
-
 class PickedResourceTile extends StatelessWidget {
-  const PickedResourceTile({
-    required this.resource,
+  const PickedResourceTile(
+    this.resource, {
     required this.onEdit,
     required this.onDelete,
     super.key,

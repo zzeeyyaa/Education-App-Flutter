@@ -1,7 +1,9 @@
 import 'package:education_app/core/common/widgets/course_picker.dart';
 import 'package:education_app/core/common/widgets/info_field.dart';
 import 'package:education_app/core/enums/notification_enum.dart';
+import 'package:education_app/core/extensions/context_extension.dart';
 import 'package:education_app/core/extensions/int_extension.dart';
+import 'package:education_app/core/res/my_colors.dart';
 import 'package:education_app/core/utils/core_utils.dart';
 import 'package:education_app/src/course/domain/entities/course.dart';
 import 'package:education_app/src/course/features/materials/data/models/resource_model.dart';
@@ -130,7 +132,9 @@ class _AddMaterialViewState extends State<AddMaterialView> {
   @override
   Widget build(BuildContext context) {
     return NotificationWrapper(
-      onNotificationSent: () {},
+      onNotificationSent: () {
+        Navigator.pop(context);
+      },
       child: BlocListener<MaterialCubit, MaterialState>(
         listener: (context, state) {
           if (showingLoader) {
@@ -193,7 +197,15 @@ class _AddMaterialViewState extends State<AddMaterialView> {
                           authorSet
                               ? Icons.check_circle
                               : Icons.check_circle_outline,
+                          color: authorSet ? Colors.green : Colors.grey,
                         ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'You can upload multiple materials at once.',
+                      style: context.theme.textTheme.bodySmall?.copyWith(
+                        color: MyColors.neutralTextColour,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -207,7 +219,7 @@ class _AddMaterialViewState extends State<AddMaterialView> {
                           itemBuilder: (_, index) {
                             final resource = resources[index];
                             return PickedResourceTile(
-                              resource: resource,
+                              resource,
                               onEdit: () => editResource(index),
                               onDelete: () {
                                 setState(() {
