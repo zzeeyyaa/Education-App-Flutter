@@ -6,6 +6,7 @@ import 'package:education_app/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:education_app/src/auth/presentation/views/sign_in_screen.dart';
 import 'package:education_app/src/auth/presentation/views/sign_up_screen.dart';
 import 'package:education_app/src/course/domain/entities/course.dart';
+import 'package:education_app/src/course/features/materials/persentation/cubit/material_cubit.dart';
 import 'package:education_app/src/course/features/materials/persentation/views/add_material_view.dart';
 import 'package:education_app/src/course/features/videos/presentation/cubit/video_cubit.dart';
 import 'package:education_app/src/course/features/videos/presentation/views/add_video_view.dart';

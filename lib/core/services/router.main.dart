@@ -77,7 +77,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (_) => MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => sl<CourseCubit>()),
-            BlocProvider(create: (_) => sl<VideoCubit>()),
+            BlocProvider(create: (_) => sl<MaterialCubit>()),
             BlocProvider(create: (_) => sl<NotificationCubit>()),
           ],
           child: const AddMaterialView(),
