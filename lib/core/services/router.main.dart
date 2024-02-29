@@ -84,6 +84,34 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
+    case AddExamView.routeName:
+      return _pageBuilder(
+        (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => sl<CourseCubit>()),
+            BlocProvider(create: (_) => sl<ExamCubit>()),
+            BlocProvider(create: (_) => sl<NotificationCubit>()),
+          ],
+          child: const AddExamView(),
+        ),
+        settings: settings,
+      );
+    case CourseMaterialsView.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => sl<MaterialCubit>(),
+          child: CourseMaterialsView(settings.arguments! as Course),
+        ),
+        settings: settings,
+      );
+    case CourseVideosView.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => sl<VideoCubit>(),
+          child: CourseVideosView(settings.arguments! as Course),
+        ),
+        settings: settings,
+      );
     default:
       return _pageBuilder(
         (_) => const PageUnderConstruction(),
