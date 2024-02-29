@@ -6,6 +6,7 @@ import 'package:education_app/core/extensions/int_extension.dart';
 import 'package:education_app/core/utils/core_utils.dart';
 import 'package:education_app/src/course/domain/entities/course.dart';
 import 'package:education_app/src/course/features/exams/presentation/cubit/exam_cubit.dart';
+import 'package:education_app/src/course/features/exams/presentation/views/exam_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -89,6 +90,9 @@ class _CourseExamsViewState extends State<CourseExamsView> {
                         ),
                       ),
                       Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: context.width * .2,

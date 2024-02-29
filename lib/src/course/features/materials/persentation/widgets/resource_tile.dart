@@ -62,7 +62,7 @@ class ResourceTile extends StatelessWidget {
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
