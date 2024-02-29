@@ -96,6 +96,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
+    case VideoPlayerView.routeName:
+      return _pageBuilder(
+          (_) => VideoPlayerView(videoURL: settings.arguments! as String),
+          settings: settings);
     case CourseMaterialsView.routeName:
       return _pageBuilder(
         (_) => BlocProvider(
@@ -109,6 +113,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (_) => BlocProvider(
           create: (_) => sl<VideoCubit>(),
           child: CourseVideosView(settings.arguments! as Course),
+        ),
+        settings: settings,
+      );
+    case CourseExamsView.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => sl<ExamCubit>(),
+          child: CourseExamsView(settings.arguments! as Course),
         ),
         settings: settings,
       );
