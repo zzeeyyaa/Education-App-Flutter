@@ -124,6 +124,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
+    case ExamHistoryDetailsScreen.routeName:
+      return _pageBuilder(
+        (_) => ExamHistoryDetailsScreen(settings.arguments! as UserExam),
+        settings: settings,
+      );
     default:
       return _pageBuilder(
         (_) => const PageUnderConstruction(),
