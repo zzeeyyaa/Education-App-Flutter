@@ -11,7 +11,6 @@ import 'package:education_app/src/course/features/videos/presentation/cubit/vide
 import 'package:education_app/src/course/features/videos/presentation/utils/video_utils.dart';
 import 'package:education_app/src/notifications/presentation/widgets/notification_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' show PreviewData;
 import 'package:flutter_link_previewer/flutter_link_previewer.dart';

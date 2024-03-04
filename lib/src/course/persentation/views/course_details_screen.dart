@@ -6,6 +6,9 @@ import 'package:education_app/core/extensions/int_extension.dart';
 import 'package:education_app/core/res/media_res.dart';
 import 'package:education_app/src/course/data/models/course_model.dart';
 import 'package:education_app/src/course/domain/entities/course.dart';
+import 'package:education_app/src/course/features/exams/presentation/views/course_exams_view.dart';
+import 'package:education_app/src/course/features/materials/persentation/views/course_materials_view.dart';
+import 'package:education_app/src/course/features/videos/presentation/views/course_videos_view.dart';
 import 'package:flutter/material.dart';
 
 class CourseDetailScreen extends StatelessWidget {
@@ -74,7 +77,7 @@ class CourseDetailScreen extends StatelessWidget {
                         subtitle:
                             'Watch out tutorial videos for ${course.title}',
                         onTap: () => Navigator.of(context).pushNamed(
-                          '/unknown-route',
+                          CourseVideosView.routeName,
                           arguments: course,
                         ),
                       ),
@@ -86,7 +89,7 @@ class CourseDetailScreen extends StatelessWidget {
                         title: '${course.numberOfExams} Exam(s)',
                         subtitle: 'Take our exams for ${course.title}',
                         onTap: () => Navigator.of(context).pushNamed(
-                          '/unknown-route',
+                          CourseExamsView.routeName,
                           arguments: course,
                         ),
                       ),
@@ -100,7 +103,7 @@ class CourseDetailScreen extends StatelessWidget {
                             'Access to ${course.numberOfMaterials.estimate}'
                             ' materials for ${course.title}',
                         onTap: () => Navigator.of(context).pushNamed(
-                          '/unknown-route',
+                          CourseMaterialsView.routeName,
                           arguments: course,
                         ),
                       ),

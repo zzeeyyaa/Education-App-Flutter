@@ -6,6 +6,7 @@ import 'package:education_app/src/course/persentation/cubit/course_cubit.dart';
 import 'package:education_app/src/home/presentation/views/home_view.dart';
 import 'package:education_app/src/notifications/presentation/cubit/notification_cubit.dart';
 import 'package:education_app/src/profile/presentation/views/profile_view.dart';
+import 'package:education_app/src/quick_access/presentation/views/quick_access_view.dart';
 import 'package:flutter/material.dart' hide Notification;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class DashboardController extends ChangeNotifier {
       child: const PersistentView(),
     ),
     ChangeNotifierProvider(
-      create: (_) => TabNavigator(TabItem(child: const Placeholder())),
+      create: (_) => TabNavigator(TabItem(child: const QuickAccessView())),
       child: const PersistentView(),
     ),
     ChangeNotifierProvider(
