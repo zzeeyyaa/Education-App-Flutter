@@ -38,7 +38,7 @@ class _CourseExamsViewState extends State<CourseExamsView> {
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('${widget.course.title} Materials'),
+        title: Text('${widget.course.title} Exams'),
         leading: const NestedBackButton(),
       ),
       body: BlocConsumer<ExamCubit, ExamState>(
@@ -53,7 +53,7 @@ class _CourseExamsViewState extends State<CourseExamsView> {
           } else if ((state is ExamsLoaded && state.exams.isEmpty) ||
               state is ExamError) {
             return NotFoundText(
-              text: 'No videos found for ${widget.course.title}',
+              'No videos found for ${widget.course.title}',
             );
           } else if (state is ExamsLoaded) {
             return SafeArea(
