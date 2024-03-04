@@ -2,7 +2,7 @@ import 'package:education_app/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class NotFoundText extends StatelessWidget {
-  const NotFoundText({required this.text, super.key});
+  const NotFoundText(this.text, {super.key});
 
   final String text;
 
