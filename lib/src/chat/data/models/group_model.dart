@@ -21,7 +21,7 @@ class GroupModel extends Group {
           courseId: '',
           members: const [],
           groupImageUrl: '',
-          lastMessage: null,
+          lastMessage: '',
           lastMessageSenderName: '',
           lastMessageTimestamp: DateTime.now(),
         );
@@ -73,9 +73,10 @@ class GroupModel extends Group {
       'name': name,
       'courseId': courseId,
       'members': members,
-      'lastMessageTimestamp': lastMessageTimestamp,
+      'lastMessageTimestamp':
+          lastMessageTimestamp == null ? null : FieldValue.serverTimestamp(),
       'lastMessageSenderName': lastMessageSenderName,
-      'lastMessage': lastMessage == null ? null : FieldValue.serverTimestamp(),
+      'lastMessage': lastMessage,
       'groupImageUrl': groupImageUrl,
     };
   }
