@@ -5,7 +5,6 @@ import 'package:education_app/core/utils/typedefs.dart';
 import 'package:education_app/src/chat/data/models/group_model.dart';
 import 'package:education_app/src/chat/domain/entities/group.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
