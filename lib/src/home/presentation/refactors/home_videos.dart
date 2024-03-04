@@ -40,7 +40,7 @@ class _HomeVideosState extends State<HomeVideos> {
         } else if ((state is VideosLoaded && state.videos.isEmpty) ||
             state is VideoError) {
           return NotFoundText(
-            text: 'No videos found for ${context.courseOfTheDay!.title}',
+            'No videos found for ${context.courseOfTheDay!.title}',
           );
         } else if (state is VideosLoaded) {
           return Column(

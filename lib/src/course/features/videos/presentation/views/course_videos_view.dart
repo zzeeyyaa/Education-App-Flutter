@@ -61,7 +61,7 @@ class _CourseVideosViewState extends State<CourseVideosView> {
             } else if ((state is VideosLoaded && state.videos.isEmpty) ||
                 state is VideoError) {
               return NotFoundText(
-                text: 'No videos found for ${widget.course.title}',
+                'No videos found for ${widget.course.title}',
               );
             } else if (state is VideosLoaded) {
               final videos = state.videos
