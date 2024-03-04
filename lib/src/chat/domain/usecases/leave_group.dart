@@ -20,6 +20,10 @@ class LeaveGroupParams extends Equatable {
     required this.userId,
   });
 
+  const LeaveGroupParams.empty()
+      : groupId = '',
+        userId = '';
+
   final String groupId;
   final String userId;
 
